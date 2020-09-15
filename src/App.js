@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Link, Switch, Route, BrowserRouter } from 'react-router-dom';
+import Counters from './components/counter/counterMain';
+import Vidly from './components/vidly/vidly';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <React.Fragment>
+          <nav className="navbar navbar-expand-sm bg-light">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  Counter
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/vidly" className="nav-link">
+                  Vidly
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/" exact component={Counters} />
+            <Route path="/vidly" exact component={Vidly} />
+          </Switch>
+        </React.Fragment>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
